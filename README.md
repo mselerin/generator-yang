@@ -25,18 +25,25 @@ yo yang my-awesome-project
 
 ## Available subcommands
 
-    yang:feature feature-name
-Generates a complete feature under app/features.
-
-***
-
     yang:service service-name
 Generates a stub service under app/services.
 
-***
 
+***
+    yang:feature feature-name
+Generates a complete feature under app/features.
+
+#### Options
+* styles : Add a `name.component.scss`
+
+
+***
     yang:component component-name
 Generates a stub component under the current directory.
+
+#### Options
+* styles : Add a `name.component.scss`
+
 
 
 ## Getting To Know Yeoman
