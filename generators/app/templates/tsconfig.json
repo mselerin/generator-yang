@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": ["es6", "dom"],
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "removeComments": false,
+    "noImplicitAny": false,
+    "stripInternal": true,
+    "outDir": "ts-out",
+    "baseUrl": ".",
+    "paths": {
+      "app/*": ["app/*"],
+      "resources/*": ["app/resources/*"],
+      "core/*": ["app/core/*"]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "compileOnSave": false
+}
