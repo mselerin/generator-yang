@@ -1,5 +1,5 @@
 # generator-yang [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> 
+> An Angular generator with Webpack
 
 ## Installation
 
@@ -23,25 +23,27 @@ yo yang my-awesome-project
 ```
 
 
-## Available subcommands
-
+## Commands
+### Service
     yang:service service-name
 Generates a stub service under app/services.
 
 
 ***
+### Feature
     yang:feature feature-name
 Generates a complete feature under app/features.
 
-#### Options
+##### Options
 * styles : Add a `name.component.scss`
 
 
 ***
+### Component
     yang:component component-name
 Generates a stub component under the current directory.
 
-#### Options
+##### Options
 * styles : Add a `name.component.scss`
 
 
