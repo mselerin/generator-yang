@@ -23,11 +23,13 @@ import {RouterModule} from "@angular/router";
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 
 // Constants
+import {AppConfig} from "app/models/app-config.model";
 import {Session} from 'app/app.session';
 
 // Services
-import {AppInitializer} from 'app/app.initializer';
+import {ConfigService} from "app/services/config.service";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {AppInitializer} from 'app/app.initializer';
 
 
 // Translation
@@ -38,6 +40,8 @@ export function HttpLoaderFactory(http: Http) {
 
 @NgModule({
     providers: [
+        AppConfig,
+        ConfigService,
         Session,
 
         // Initialisation de l'application

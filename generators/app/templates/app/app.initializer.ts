@@ -1,39 +1,44 @@
 import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
 import {LOGGER, LogLevelEnum} from "app/services/logger.service";
 import {TranslateService} from "@ngx-translate/core";
+import {ConfigService} from "app/services/config.service";
+import {AppConfig} from "app/models/app-config.model";
 
 @Injectable()
 export class AppInitializer
 {
-   constructor(
-       protected translate: TranslateService
-   ) {}
+    constructor(
+        protected configService: ConfigService,
+        protected translate: TranslateService
+    ) {}
 
-   public init(): Promise<void> {
-       console.log('Initializing application');
+    public init(): Promise<void> {
+        console.log('Initializing application');
 
-       // Logging
-       LOGGER.clientLogLevel = LogLevelEnum.DEBUG;
-       LOGGER.serverLogLevel = LogLevelEnum.ERROR;
+        return this.configService.loadConfig()
+            .then((config: AppConfig) => {
 
-       // LOGGER.loggingServiceUrl = '/api/log';
+                // Logging
+                LOGGER.clientLogLevel = LogLevelEnum.DEBUG;
+                LOGGER.serverLogLevel = LogLevelEnum.ERROR;
 
-       // Translation
-       this.translate.addLangs(["en", "fr"]);
-       this.translate.setDefaultLang('fr');
+                // LOGGER.loggingServiceUrl = '/api/log';
 
-       // Langue du navigateur
-       let browserLang = this.translate.getBrowserLang();
-       LOGGER.debug(`Detected browser language : ${browserLang}`);
+                // Translation
+                this.translate.addLangs(config.languages);
+                this.translate.setDefaultLang(config.lang);
 
-       if (this.translate.getLangs().indexOf(browserLang) === -1)
-           browserLang = 'fr';
+                // Langue du navigateur
+                let browserLang = this.translate.getBrowserLang();
+                LOGGER.debug(`Detected browser language : ${browserLang}`);
 
-       LOGGER.debug(`Using language : ${browserLang}`);
-       this.translate.use(browserLang);
+                if (this.translate.getLangs().indexOf(browserLang) === -1)
+                    browserLang = 'fr';
 
-       LOGGER.info('Application initialized');
-       return Observable.of(null).toPromise();
-   }
+                LOGGER.debug(`Using language : ${browserLang}`);
+                this.translate.use(browserLang);
+
+                LOGGER.info('Application initialized');
+            });
+    }
 }
