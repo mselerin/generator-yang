@@ -126,7 +126,7 @@ const baseConfig = {
             {
                 from: 'app',
                 to: 'app',
-                ignore: ['*.ts', '*.scss', '*.html']
+                ignore: ['*.ts', '*.scss', '*.css', '*.html']
             }
         ])
     ]
