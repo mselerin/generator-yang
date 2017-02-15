@@ -1,6 +1,6 @@
 'use strict';
 
-const Generator = require('yeoman-generator');
+const YangGenerator = require('../yang-generator.js');
 const path = require('path');
 const chalk = require('chalk');
 const yosay = require('yosay');
@@ -8,31 +8,26 @@ const rename = require("gulp-rename");
 const _ = require("lodash");
 
 
-module.exports = class extends Generator
+module.exports = class extends YangGenerator
 {
    constructor(args, opts) {
       super(args, opts);
-      this.argument('name', { type: String, required: true });
 
-      this.option('dir', { type: String, required: false });
       this.option('styles', { type: Boolean, required: false });
-
-      // Default values
-      this.props = {
-         dir: this.options.dir || '',
-         name: this.options.name,
-         titleName: _.upperFirst(_.camelCase(this.options.name)),
-         styles: this.options.styles
-      };
+      this.option('shared', { type: Boolean, required: false });
    }
 
-   writing () {
 
-      // Templated filename
-      this.registerTransformStream(rename((path) => {
-         path.basename = path.basename.replace(/(#name#)/g, this.props.name);
-         path.dirname = path.dirname.replace(/(#name#)/g, this.props.name);
-      }));
+   initializing() {
+      super.initializing();
+      this.props['dir'] = this.options.dir || (this.options.shared ? 'app/shared/components' : '');
+      this.props['styles'] = this.options.styles || false;
+      this.props['shared'] = this.options.styles || false;
+   }
+
+
+   writing () {
+      super.writing();
 
       // Copy templates
       this.fs.copyTpl(
@@ -54,6 +49,5 @@ module.exports = class extends Generator
             this.props
          );
       }
-
    }
 };
