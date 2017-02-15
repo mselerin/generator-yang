@@ -158,17 +158,24 @@ if ('dev' === PROFILE) {
     });
 }
 
-else if ('prod' === PROFILE) {
-    config = merge(config, {
-        plugins: [
-            new webpack.optimize.UglifyJsPlugin({
-                compress: {
-                    warnings: false
-                },
-                sourceMap: false
-            })
-        ]
-    });
+else {
+   config = merge(config, {
+      plugins: [
+         new webpack.optimize.UglifyJsPlugin({
+            comments: false,
+            beautify: false,
+            sourceMap: false,
+            mangle: {
+               screw_ie8: true,
+               keep_fnames: true
+            },
+            compress: {
+               screw_ie8: true,
+               warnings: false
+            }
+         })
+      ]
+   });
 }
 
 module.exports = config;
