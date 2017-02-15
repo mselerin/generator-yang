@@ -16,11 +16,12 @@
    },
    "devDependencies": {
       "@types/node": "7.0.5",
+      "@types/whatwg-fetch": "0.0.33",
       "angular2-template-loader": "0.6.2",
       "copy-webpack-plugin": "4.0.1",
       "cross-env": "3.1.4",
       "css-loader": "0.26.1",
-      "expose-loader": "0.7.1",
+      "expose-loader": "0.7.3",
       "extract-text-webpack-plugin": "2.0.0-rc.3",
       "file-loader": "0.10.0",
       "html-loader": "0.4.4",
@@ -28,7 +29,7 @@
       "node-sass": "4.5.0",
       "raw-loader": "0.5.1",
       "rimraf": "2.5.4",
-      "sass-loader": "5.0.1",
+      "sass-loader": "6.0.0",
       "source-map-loader": "0.1.6",
       "style-loader": "0.13.1",
       "to-string-loader": "1.1.5",
@@ -39,17 +40,18 @@
       "webpack-merge": "2.6.1"
    },
    "dependencies": {
-      "@angular/common": "2.4.6",
-      "@angular/compiler": "2.4.6",
-      "@angular/core": "2.4.6",
-      "@angular/forms": "2.4.6",
-      "@angular/http": "2.4.6",
-      "@angular/platform-browser": "2.4.6",
-      "@angular/platform-browser-dynamic": "2.4.6",
-      "@angular/router": "3.4.6",
+      "@angular/common": "2.4.7",
+      "@angular/compiler": "2.4.7",
+      "@angular/core": "2.4.7",
+      "@angular/forms": "2.4.7",
+      "@angular/http": "2.4.7",
+      "@angular/platform-browser": "2.4.7",
+      "@angular/platform-browser-dynamic": "2.4.7",
+      "@angular/router": "3.4.7",
       "core-js": "2.4.1",
       "reflect-metadata": "0.1.9",
-      "rxjs": "5.1.0",
-      "zone.js": "0.7.6"
+      "rxjs": "5.1.1",
+      "whatwg-fetch": "2.0.2",
+      "zone.js": "0.7.7"
    }
 }

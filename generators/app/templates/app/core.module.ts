@@ -15,39 +15,48 @@ import 'rxjs/add/operator/toPromise';
 
 
 // Angular Modules
-import {NgModule, SkipSelf, Optional} from '@angular/core';
-import {CommonModule} from "@angular/common";
+import {NgModule, SkipSelf, Optional, APP_INITIALIZER} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {RouterModule} from "@angular/router";
 
 // Constants
-import {Session} from "app/app.session";
+import {Session} from 'app/app.session';
 
 // Services
-import { Logger } from './services/logger.service';
+import {AppInitializer} from 'app/app.initializer';
 
 
 const MODULES: any[] = [
-    CommonModule,
-    FormsModule,
-    HttpModule,
-    RouterModule
+   CommonModule,
+   FormsModule,
+   HttpModule,
+   RouterModule
 ];
 
 
 @NgModule({
-    providers: [
-        Session,
-        Logger
-    ],
-    imports: MODULES,
-    exports: MODULES
+   providers: [
+      Session,
+
+      // Initialisation de l'application
+      AppInitializer,
+      {
+         provide: APP_INITIALIZER,
+         multi: true,
+         // Doit retourner une fonction qui renvoie une Promise
+         useFactory: (appInit: AppInitializer) => () => appInit.init(),
+         deps: [AppInitializer]
+      }
+   ],
+   imports: MODULES,
+   exports: MODULES
 })
 export class CoreModule {
-    constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
-        if (parentModule) {
-            throw new Error(`CoreModule has already been loaded. Import Core modules in the AppModule only.`);
-        }
-    }
+   constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
+      if (parentModule) {
+         throw new Error(`CoreModule has already been loaded. Import Core modules in the AppModule only.`);
+      }
+   }
 }

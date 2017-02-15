@@ -1,32 +1,19 @@
 import {Component} from "@angular/core";
-import {Router, NavigationError, NavigationStart, NavigationEnd, NavigationCancel} from "@angular/router";
-import {Logger} from "./services/logger.service";
+import {Router, NavigationError} from "@angular/router";
+import {LOGGER} from "./services/logger.service";
 
 @Component({
-    selector: 'app-wrapper',
-    template: `<app-layout></app-layout>`
+   selector: 'app-wrapper',
+   template: `<app-layout></app-layout>`
 })
 export class AppComponent {
-    constructor(
-        private router: Router,
-        private logger: Logger
-    ) {
-        this.router.events.subscribe((event) =>
-        {
-            if (event instanceof NavigationStart) {
-                this.logger.debug('NavigationStart', event);
-            }
-            else if (event instanceof NavigationEnd
-                || event instanceof NavigationCancel
-                || event instanceof NavigationError
-            ) {
-                this.logger.debug('NavigationEnd | Cancel | Error', event);
-            }
-
-
-            if (event instanceof NavigationError) {
-                this.logger.warn(event.error)
-            }
-        });
-    }
+   constructor(
+      private router: Router
+   ) {
+      this.router.events
+         .filter(event => event instanceof NavigationError)
+         .subscribe((event: NavigationError) => {
+            LOGGER.warn(event.error)
+         });
+   }
 }
