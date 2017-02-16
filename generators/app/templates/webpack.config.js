@@ -130,7 +130,22 @@ const baseConfig = {
             ignore: ['*.ts', '*.scss', '*.css', '*.html']
          }
       ])
-   ]
+   ],
+
+   stats: {
+      colors: true,
+      hash: false,
+      version: false,
+      assets: true,
+      cached: false,
+      modules: false,
+      children: false,
+      chunks: false,
+      chunkModules: false,
+      chunkOrigins: false,
+      reasons: false,
+      source: false
+   }
 
 };
 
@@ -145,16 +160,7 @@ if ('dev' === PROFILE) {
          port: 3000,
          inline: false,
          hot: false,
-         stats: {
-            colors: true,
-            hash: false,
-            version: false,
-            assets: true,
-            modules: false,
-            children: false,
-            chunks: false,
-            chunkModules: false
-         }
+         stats: config.stats
       }
    });
 }
@@ -177,22 +183,7 @@ else {
          }),
 
          new CleanWebpackPlugin([PATHS.dist])
-      ],
-
-      stats: {
-         colors: true,
-         hash: false,
-         version: false,
-         assets: true,
-         cached: false,
-         modules: false,
-         children: false,
-         chunks: false,
-         chunkModules: false,
-         chunkOrigins: false,
-         reasons: false,
-         source: false
-      }
+      ]
    });
 }
 
