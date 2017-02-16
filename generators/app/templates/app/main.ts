@@ -13,5 +13,4 @@ import {AppModule} from './app.module';
 if (CONFIG.production)
     enableProdMode();
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-    .catch(err => console.error(err));
+platformBrowserDynamic().bootstrapModule(AppModule);
