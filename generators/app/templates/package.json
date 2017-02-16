@@ -10,8 +10,8 @@
    "private": true,
    "scripts": {
       "start": "cross-env PROFILE=dev webpack-dev-server",
-      "build:test": "cross-env PROFILE=test node build.js",
-      "build:prod": "cross-env PROFILE=prod node build.js",
+      "build:test": "cross-env PROFILE=test webpack",
+      "build:prod": "cross-env PROFILE=prod webpack",
       "postversion": "npm run build:prod"
    },
    "devDependencies": {
@@ -19,6 +19,7 @@
       "@types/node": "7.0.5",
       "@types/whatwg-fetch": "0.0.33",
       "angular2-template-loader": "0.6.2",
+      "clean-webpack-plugin": "0.1.15",
       "copy-webpack-plugin": "4.0.1",
       "cross-env": "3.1.4",
       "css-loader": "0.26.1",
