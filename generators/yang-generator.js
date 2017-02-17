@@ -26,6 +26,9 @@ module.exports = class extends Generator
       this.props['titleName'] = _.upperFirst(_.camelCase(this.options.name));
    }
 
+   configuring() {
+   }
+
 
    writing() {
       // Templated filename

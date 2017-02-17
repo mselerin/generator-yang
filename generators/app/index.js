@@ -74,6 +74,12 @@ module.exports = class extends YangGenerator
    }
 
 
+   configuring() {
+      super.configuring();
+      this.props['dir'] = this.options.dir || this.props.name;
+   }
+
+
    writing () {
       super.writing();
       this.copyTemplates();
