@@ -8,7 +8,11 @@
     "email": "michel.selerin@outlook.com",
     "url": ""
   },
-  "files": [
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/mselerin/generator-yang"
+   },
+   "files": [
     "generators"
   ],
   "main": "generators/index.js",
