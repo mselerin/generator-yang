@@ -3,17 +3,10 @@
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) and Yang using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
-npm install -g yo
-```
-
-Then install the generator
-```bash
-git clone https://bitbucket.org/mselerin/generator-yang
-cd generator-yang
-npm install & npm link
+npm install -g yo generator-yang
 ```
 
 Then generate your new project in another folder:
@@ -21,6 +14,8 @@ Then generate your new project in another folder:
 ```bash
 yo yang my-awesome-project
 ```
+
+That's all !
 
 
 ## Commands
