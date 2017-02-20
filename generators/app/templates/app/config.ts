@@ -1,2 +1,2 @@
-declare let ENV_CONFIG: any;
-export const CONFIG = ENV_CONFIG;
+declare let PROFILE_CONFIG: any;
+export const CONFIG = PROFILE_CONFIG;
