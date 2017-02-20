@@ -1,2 +1,2 @@
-declare let CLIENT_CONFIG: any;
-export const CONFIG = CLIENT_CONFIG;
+declare let ENV_CONFIG: any;
+export const CONFIG = ENV_CONFIG;

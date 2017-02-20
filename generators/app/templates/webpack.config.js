@@ -1,5 +1,5 @@
 const APP_VERSION = require("./package.json").version;
-const PROFILE = process.env.PROFILE;
+const PROFILE = process.env.PROFILE || 'dev';
 
 const path = require('path');
 const webpack = require('webpack');
@@ -11,8 +11,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 
-const ENV_CONFIG = require('./env-config');
-const profileConfig = ENV_CONFIG[PROFILE];
+const profileConfig = require('./env-config')[PROFILE];
 
 
 const PATHS = { };
@@ -105,7 +104,7 @@ const baseConfig = {
       new webpack.NoEmitOnErrorsPlugin(),
 
       new webpack.DefinePlugin({
-         CLIENT_CONFIG: JSON.stringify(profileConfig.clientConfig)
+         ENV_CONFIG: JSON.stringify(profileConfig.clientConfig)
       }),
 
       new webpack.ProvidePlugin({
