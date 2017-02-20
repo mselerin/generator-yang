@@ -20,6 +20,11 @@ module.exports = class extends Generator
    }
 
 
+   getVersion() {
+      return require('../package.json').version;
+   }
+
+
    initializing() {
       this.props['dir'] = this.options.dir || '';
       this.props['name'] = _.kebabCase(this.options.name);

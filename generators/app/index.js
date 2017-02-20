@@ -18,6 +18,7 @@ module.exports = class extends YangGenerator
       super.initializing();
       this.props['dir'] = this.options.dir || this.props.name;
 
+      this.props['name'] = this.options.name;
       this.props['description'] = this.options.name;
       this.props['authorName'] = this.user.git.name();
       this.props['authorEmail'] = this.user.git.email();
@@ -28,7 +29,10 @@ module.exports = class extends YangGenerator
    prompting () {
       // Have Yeoman greet the user.
       this.log(yosay(
-         'Welcome to the transcendent ' + chalk.blue('YANG') + ' generator!'
+         'Welcome to the transcendent '
+         + chalk.blue('YANG')
+         + ' ' + chalk.green(this.getVersion())
+         + ' generator!'
       ));
 
       let prompts = [
