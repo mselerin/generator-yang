@@ -9,17 +9,17 @@ const defaultConfig = {
 };
 
 module.exports = {
-   dev: Object.assign(defaultConfig, {
+   dev: Object.assign({}, defaultConfig, {
       production: false,
       apiUrl: 'http://localhost:8080/api/'
    }),
 
-   test: Object.assign(defaultConfig, {
+   test: Object.assign({}, defaultConfig, {
       production: true,
       apiUrl: '/api/'
    }),
 
-   prod: Object.assign(defaultConfig, {
+   prod: Object.assign({}, defaultConfig, {
       production: true,
       apiUrl: '/api/'
    }),
