@@ -7,17 +7,17 @@ import {Http} from "@angular/http";
 @Injectable()
 export class ConfigService
 {
-    constructor(
-        private http:Http,
-        public appConfig:AppConfig
-    ) { }
+   constructor(
+      private http:Http,
+      public appConfig:AppConfig
+   ) { }
 
-    loadConfig(): Promise<any> {
-        let url = 'app/resources/config/app-config.json';
+   loadConfig(): Promise<any> {
+      let url = 'app/resources/config/app-config.json';
 
-        return this.http.get(url)
-            .map(res => res.json())
-            .map(data => _.merge(this.appConfig, data))
-            .toPromise();
-    }
+      return this.http.get(url)
+         .map(res => res.json())
+         .map(data => _.merge(this.appConfig, new AppConfig(), data))
+         .toPromise();
+   }
 }
