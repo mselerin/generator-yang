@@ -10,8 +10,8 @@
    "private": true,
    "scripts": {
       "start": "cross-env PROFILE=dev webpack-dev-server",
-      "build:test": "cross-env PROFILE=test webpack",
-      "build:prod": "cross-env PROFILE=prod webpack",
+      "build:test": "cross-env PROFILE=test webpack -p",
+      "build:prod": "cross-env PROFILE=prod webpack -p",
       "postversion": "npm run build:prod"
    },
    "devDependencies": {
