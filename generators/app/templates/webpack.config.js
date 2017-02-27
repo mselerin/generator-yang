@@ -106,10 +106,6 @@ const baseConfig = {
          PROFILE_CONFIG: JSON.stringify(profileConfig)
       }),
 
-      new webpack.ProvidePlugin({
-         $: 'jquery', jquery: 'jquery', jQuery: 'jquery', 'window.jQuery' : 'jquery'
-      }),
-
       extractCSS,
 
       new HtmlWebpackPlugin({
@@ -142,7 +138,8 @@ const baseConfig = {
       chunkModules: false,
       chunkOrigins: false,
       reasons: false,
-      source: false
+      source: false,
+      maxModules: 0
    }
 
 };
