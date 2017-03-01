@@ -1,6 +1,6 @@
 {
   "name": "generator-yang",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A Yeoman Generator for Angular with Webpack",
   "author": {
     "name": "Michel Selerin",
