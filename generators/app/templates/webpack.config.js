@@ -105,7 +105,7 @@ const baseConfig = {
          name: 'vendor-modules',
          chunks: ['main'],
          minChunks: function (module) {
-            return (module.resource && module.resource.indexOf(PATHS.node_modules) !== -1);
+            return (module.userRequest && module.userRequest.indexOf(PATHS.node_modules) !== -1);
          }
       }),
 
@@ -114,7 +114,7 @@ const baseConfig = {
          name: 'vendor-angular',
          chunks: ['vendor-modules'],
          minChunks: function (module) {
-            return (module.resource && module.resource.indexOf('@angular') !== -1);
+            return (module.userRequest && module.userRequest.indexOf('@angular') !== -1);
          }
       }),
 
