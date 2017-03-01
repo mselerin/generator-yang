@@ -104,7 +104,7 @@ const baseConfig = {
       new CommonsChunkPlugin({
          name: 'vendor-modules',
          chunks: ['main'],
-         minChunks: function (module) {
+         minChunks: (module) => {
             return (module.userRequest && module.userRequest.indexOf(PATHS.node_modules) !== -1);
          }
       }),
@@ -113,7 +113,7 @@ const baseConfig = {
       new CommonsChunkPlugin({
          name: 'vendor-angular',
          chunks: ['vendor-modules'],
-         minChunks: function (module) {
+         minChunks: (module) => {
             return (module.userRequest && module.userRequest.indexOf('@angular') !== -1);
          }
       }),
