@@ -38,6 +38,7 @@
       "ts-loader": "2.0.1",
       "typescript": "2.1.4",
       "webpack": "2.2.1",
+      "webpack-chunk-hash": "0.4.0",
       "webpack-dev-server": "2.4.1",
       "webpack-merge": "3.0.0"
    },
