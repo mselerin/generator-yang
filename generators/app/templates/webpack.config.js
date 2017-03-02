@@ -27,7 +27,26 @@ const extractCSS = new ExtractTextPlugin({
 });
 
 
-const baseConfig = {
+const isInPath = (module, p, ignores) => {
+   let inPath = false;
+   if (module.userRequest) {
+      inPath = (module.userRequest.indexOf(p) === 0);
+
+      // Vérification des ignores
+      if (inPath && ignores) {
+         let hasIgnore = ignores.some((ignore) => {
+            return (module.userRequest.indexOf(path.join(p, ignore)) === 0);
+         });
+
+         inPath = (hasIgnore ? false : inPath);
+      }
+   }
+
+   return inPath;
+};
+
+
+let config = {
    devtool: false,
 
    entry: {
@@ -96,22 +115,18 @@ const baseConfig = {
          PROFILE_CONFIG: JSON.stringify(profileConfig)
       }),
 
-      // Sortir les librairies de node_modules
+      // Permet de séparer le code applicatif des librairies externes
       new CommonsChunkPlugin({
          name: 'vendor-modules',
          chunks: ['main'],
-         minChunks: (module) => {
-            return (module.userRequest && module.userRequest.indexOf(PATHS.node_modules) !== -1);
-         }
+         minChunks: (module) => isInPath(module, PATHS.node_modules, ['@angular'])
       }),
 
       // Sortir Angular hors du vendor-modules
       new CommonsChunkPlugin({
          name: 'vendor-angular',
-         chunks: ['vendor-modules'],
-         minChunks: (module) => {
-            return (module.userRequest && module.userRequest.indexOf('@angular') !== -1);
-         }
+         chunks: ['vendor-modules', 'main'],
+         minChunks: (module) => isInPath(module, path.join(PATHS.node_modules, '@angular'))
       }),
 
       // Faire un fichier pour les polyfills et un dernier pour la partie "webpack" (manifest)
@@ -169,8 +184,6 @@ const baseConfig = {
 
 };
 
-
-let config = merge(baseConfig, {});
 
 if ('dev' === PROFILE) {
    config = merge(config, {
