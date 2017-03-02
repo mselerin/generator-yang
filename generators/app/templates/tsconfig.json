@@ -13,9 +13,7 @@
     "outDir": "ts-out",
     "baseUrl": ".",
     "paths": {
-      "app/*": ["app/*"],
-      "resources/*": ["app/resources/*"],
-      "core/*": ["app/core/*"]
+      "app/*": ["app/*"]
     }
   },
   "exclude": [

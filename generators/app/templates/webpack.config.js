@@ -19,8 +19,6 @@ PATHS.root         = path.join(__dirname, './');
 PATHS.dist         = path.join(PATHS.root, `dist/${PROFILE}`);
 PATHS.node_modules = path.join(PATHS.root, 'node_modules');
 PATHS.app          = path.join(PATHS.root, 'app');
-PATHS.resources    = path.join(PATHS.app, 'resources');
-PATHS.core         = path.join(PATHS.app, 'core');
 
 
 const baseOutputName = `[name]-${APP_VERSION}-[chunkhash:12]`;
@@ -49,9 +47,7 @@ const baseConfig = {
       modules: ['node_modules'],
       extensions: ['.ts', '.js'],
       alias: {
-         'app': PATHS.app,
-         'resources': PATHS.resources,
-         'core': PATHS.core
+         'app': PATHS.app
       }
    },
 
