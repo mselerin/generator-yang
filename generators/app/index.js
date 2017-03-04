@@ -18,7 +18,7 @@ module.exports = class extends YangGenerator
    initializing() {
       super.initializing();
       this.props['name'] = this.options.name || path.basename(process.cwd());
-      this.props['description'] = this.options.name;
+      this.props['description'] = this.props.name;
       this.props['authorName'] = this.user.git.name();
       this.props['authorEmail'] = this.user.git.email();
       this.props['authorUrl'] = '';
