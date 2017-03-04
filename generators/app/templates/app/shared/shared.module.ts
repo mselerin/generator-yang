@@ -28,11 +28,11 @@ const MODULES: any[] = [
 ];
 
 const DECLARATIONS = [
-   /* yang-add-pipe-declaration - Yang will add pipes declarations here */
    PropercasePipe,
+   /* yang-add-pipe-declaration - Yang will add pipes declarations here */
 
-   /* yang-add-component-declaration - Yang will add components declarations here */
    PageHeaderComponent,
+   /* yang-add-component-declaration - Yang will add components declarations here */
 
    /* yang-add-directive-declaration - Yang will add directives declarations here */
    SampleDirective

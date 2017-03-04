@@ -56,7 +56,7 @@ module.exports = class extends YangGenerator
          this.insertBeforeNeedle(
             'app/shared/shared.module.ts',
             'yang-add-component-import',
-            `import {${this.props.titleName}Component} from "./component/${this.props.kebabName}.component";`
+            `import {${this.props.titleName}Component} from "./components/${this.props.kebabName}.component";`
          );
 
          this.insertBeforeNeedle(
