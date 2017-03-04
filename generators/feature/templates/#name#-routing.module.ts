@@ -1,10 +1,10 @@
 import {Routes, RouterModule} from "@angular/router";
-import {<%=titleName%>Component} from './<%=name%>.component';
+import {<%=titleName%>Component} from './<%=kebabName%>.component';
 
 
 let routes: Routes = [
    {
-      path: '<%=name%>',
+      path: '<%=kebabName%>',
       component: <%=titleName%>Component
    }
 ];

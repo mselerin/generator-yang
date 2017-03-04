@@ -14,7 +14,19 @@ module.exports = class extends Generator
       super(args, opts);
 
       this.argument('name', { type: String, required: false });
-      this.option('dir', { type: String, required: false });
+
+      this.option('dir', {
+         desc: "The directory where the code will be",
+         type: String,
+         required: false
+      });
+
+      this.option('skip-prompt', {
+         desc: "Don't ask anything, use the default",
+         type: Boolean,
+         required: false,
+         default: false
+      });
 
       this.props = {};
    }
@@ -27,7 +39,8 @@ module.exports = class extends Generator
 
    initializing() {
       this.props['dir'] = this.options.dir || '';
-      this.props['name'] = _.kebabCase(this.options.name);
+      this.props['name'] = this.options.name;
+      this.props['kebabName'] = _.kebabCase(this.options.name);
       this.props['titleName'] = _.upperFirst(_.camelCase(this.options.name));
    }
 
@@ -38,8 +51,8 @@ module.exports = class extends Generator
    writing() {
       // Templated filename
       this.registerTransformStream(rename((path) => {
-         path.basename = path.basename.replace(/(#name#)/g, this.props.name);
-         path.dirname = path.dirname.replace(/(#name#)/g, this.props.name);
+         path.basename = path.basename.replace(/(#name#)/g, this.props.kebabName);
+         path.dirname = path.dirname.replace(/(#name#)/g, this.props.kebabName);
       }));
    }
 

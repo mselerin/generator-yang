@@ -1,54 +1,35 @@
 {
-  "name": "generator-yang",
-  "version": "0.4.2",
-  "description": "A Yeoman Generator for Angular with Webpack",
-  "author": {
-    "name": "Michel Selerin",
-    "email": "michel.selerin@outlook.com",
-    "url": ""
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mselerin/generator-yang"
-  },
-  "files": [
-    "generators"
-  ],
-  "main": "generators/index.js",
-  "keywords": [
-    "yeoman",
-    "yeoman-generator",
-    "generator",
-    "angular",
-    "angular 2",
-    "webpack"
-  ],
-  "dependencies": {
-    "chalk": "^1.1.3",
-    "gulp-rename": "^1.2.2",
-    "lodash": "^4.17.4",
-    "yeoman-generator": "^1.0.0",
-    "yosay": "^2.0.0"
-  },
-  "devDependencies": {
-    "eslint": "^3.1.1",
-    "eslint-config-xo-space": "^0.15.0",
-    "gulp": "^3.9.0",
-    "gulp-eslint": "^3.0.1",
-    "gulp-exclude-gitignore": "^1.0.0",
-    "gulp-istanbul": "^1.0.0",
-    "gulp-line-ending-corrector": "^1.0.1",
-    "gulp-mocha": "^3.0.1",
-    "gulp-nsp": "^2.1.0",
-    "gulp-plumber": "^1.0.0",
-    "yeoman-assert": "^3.0.0",
-    "yeoman-test": "^1.6.0"
-  },
-  "eslintConfig": {
-    "extends": "xo-space",
-    "env": {
-      "mocha": true
-    }
-  },
-  "license": "MIT"
+   "name": "generator-yang",
+   "version": "0.4.2",
+   "description": "A Yeoman Generator for Angular with Webpack",
+   "author": {
+      "name": "Michel Selerin",
+      "email": "michel.selerin@outlook.com",
+      "url": ""
+   },
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/mselerin/generator-yang"
+   },
+   "files": [
+      "generators"
+   ],
+   "main": "generators/index.js",
+   "keywords": [
+      "yeoman",
+      "yeoman-generator",
+      "generator",
+      "angular",
+      "angular 2",
+      "webpack"
+   ],
+   "dependencies": {
+      "chalk": "^1.1.3",
+      "gulp-rename": "^1.2.2",
+      "lodash": "^4.17.4",
+      "yeoman-generator": "^1.0.0",
+      "yosay": "^2.0.0"
+   },
+   "devDependencies": {},
+   "license": "MIT"
 }

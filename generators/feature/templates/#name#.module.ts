@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {SharedModule} from "app/shared/shared.module";
-import {<%=titleName%>Component} from './<%=name%>.component';
-import {<%=titleName%>Routes} from './<%=name%>-routing.module';
+import {<%=titleName%>Component} from './<%=kebabName%>.component';
+import {<%=titleName%>Routes} from './<%=kebabName%>-routing.module';
 
 
 @NgModule({

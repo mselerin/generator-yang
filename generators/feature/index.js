@@ -17,7 +17,7 @@ module.exports = class extends YangGenerator
 
    initializing() {
       super.initializing();
-      this.props['dir'] = this.options.dir || `app/features/${this.props.name}`;
+      this.props['dir'] = this.options.dir || `app/features/${this.props.kebabName}`;
       this.props['styles'] = this.options.styles || false;
    }
 

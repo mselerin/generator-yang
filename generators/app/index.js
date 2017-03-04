@@ -5,6 +5,7 @@ const chalk = require('chalk');
 const yosay = require('yosay');
 const rename = require("gulp-rename");
 const _ = require("lodash");
+const path = require("path");
 
 
 module.exports = class extends YangGenerator
@@ -16,9 +17,7 @@ module.exports = class extends YangGenerator
 
    initializing() {
       super.initializing();
-      this.props['dir'] = this.options.dir || this.props.name;
-
-      this.props['name'] = this.options.name;
+      this.props['name'] = this.options.name || path.basename(process.cwd());
       this.props['description'] = this.options.name;
       this.props['authorName'] = this.user.git.name();
       this.props['authorEmail'] = this.user.git.email();
@@ -34,6 +33,10 @@ module.exports = class extends YangGenerator
          + ' ' + chalk.green(this.getVersion())
          + ' generator!'
       ));
+
+      if (this.options['skip-prompt'] === true) {
+         return;
+      }
 
       let prompts = [
          {
@@ -80,7 +83,7 @@ module.exports = class extends YangGenerator
 
    configuring() {
       super.configuring();
-      this.props['dir'] = this.options.dir || this.props.name;
+      this.props['dir'] = this.options.dir || '.';
    }
 
 
