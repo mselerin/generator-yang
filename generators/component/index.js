@@ -49,5 +49,21 @@ module.exports = class extends YangGenerator
             this.props
          );
       }
+
+
+      // Update files
+      if (this.props.dir === 'app/shared/components') {
+         this.insertBeforeNeedle(
+            'app/shared/shared.module.ts',
+            'yang-add-component-import',
+            `import {${this.props.titleName}Component} from "./component/${this.props.kebabName}.component";`
+         );
+
+         this.insertBeforeNeedle(
+            'app/shared/shared.module.ts',
+            'yang-add-component-declaration',
+            `${this.props.titleName}Component,`
+         );
+      }
    }
 };
