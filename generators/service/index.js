@@ -25,5 +25,18 @@ module.exports = class extends YangGenerator
 
       // Copy templates
       this.copyTemplates();
+
+      // Update files
+      this.insertBeforeNeedle(
+         'app/core.module.ts',
+         'yang-add-service-import',
+         `import {${this.props.titleName}Service} from "app/services/${this.props.kebabName}.service";`
+      );
+
+      this.insertBeforeNeedle(
+         'app/core.module.ts',
+         'yang-add-service-provider',
+         `${this.props.titleName}Service,`
+      );
    }
 };

@@ -77,4 +77,25 @@ module.exports = class extends Generator
       );
    }
 
+
+   insertBeforeNeedle(file, needle, str) {
+      let content = this.fs.read(file);
+      needle = `/* ${needle} `;
+
+      let ndx = content.indexOf(needle);
+      if (ndx >= 0) {
+         // Find spaces before
+         let spaces = "";
+         for (let i = ndx-1; i > 0; i--) {
+            if (content.charAt(i) === ' ')
+               spaces += " ";
+            else
+               break;
+         }
+
+         content = content.replace(needle, `${str}\r\n${spaces}${needle}`);
+         this.fs.write(file, content);
+      }
+   }
+
 };

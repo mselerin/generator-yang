@@ -31,5 +31,18 @@ module.exports = class extends YangGenerator
       });
 
       this.copyTemplates();
+
+      // Update app/features/feature.module.ts
+      this.insertBeforeNeedle(
+         'app/features/features.module.ts',
+         'yang-add-feature-import',
+         `import {${this.props.titleName}Module} from "app/features/${this.props.kebabName}/${this.props.kebabName}.module";`
+      );
+
+      this.insertBeforeNeedle(
+         'app/features/features.module.ts',
+         'yang-add-feature-module',
+         `${this.props.titleName}Module,`
+      );
    }
 };
