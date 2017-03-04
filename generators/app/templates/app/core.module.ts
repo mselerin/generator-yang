@@ -30,48 +30,49 @@ import {Session} from 'app/app.session';
 import {ConfigService} from "app/services/config.service";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {AppInitializer} from 'app/app.initializer';
-
+/* yang-add-service-import - Yang will add services imports here */
 
 // Translation
 export function HttpLoaderFactory(http: Http) {
-    return new TranslateHttpLoader(http, 'app/resources/i18n/', '.json');
+   return new TranslateHttpLoader(http, 'app/resources/i18n/', '.json');
 }
 
 
 @NgModule({
-    providers: [
-        AppConfig,
-        ConfigService,
-        Session,
+   providers: [
+      AppConfig,
+      ConfigService,
+      Session,
+      /* yang-add-service-provider - Yang will add services providers here */
 
-        // Initialisation de l'application
-        AppInitializer,
-        {
-            provide: APP_INITIALIZER,
-            multi: true,
-            // Doit retourner une fonction qui renvoie une Promise
-            useFactory: (appInit: AppInitializer) => () => appInit.init(),
-            deps: [AppInitializer]
-        }
-    ],
-    imports: [
-        CommonModule,
-        FormsModule,
-        HttpModule,
-        RouterModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [Http]
-            }
-        })
-    ]
+      // Initialisation de l'application
+      AppInitializer,
+      {
+         provide: APP_INITIALIZER,
+         multi: true,
+         // Doit retourner une fonction qui renvoie une Promise
+         useFactory: (appInit: AppInitializer) => () => appInit.init(),
+         deps: [AppInitializer]
+      }
+   ],
+   imports: [
+      CommonModule,
+      FormsModule,
+      HttpModule,
+      RouterModule,
+      TranslateModule.forRoot({
+         loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [Http]
+         }
+      })
+   ]
 })
 export class CoreModule {
-    constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
-        if (parentModule) {
-            throw new Error(`CoreModule has already been loaded. Import Core modules in the AppModule only.`);
-        }
-    }
+   constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
+      if (parentModule) {
+         throw new Error(`CoreModule has already been loaded. Import Core modules in the AppModule only.`);
+      }
+   }
 }
