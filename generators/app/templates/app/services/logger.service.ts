@@ -21,25 +21,25 @@ export class LoggerService
    }
 
 
-   public debug(msg: string): void {
-      this.log(LogLevelEnum.DEBUG, msg);
+   public debug(...msg: any[]): void {
+      this.log(LogLevelEnum.DEBUG, ...msg);
    }
 
-   public info(msg: string): void {
-      this.log(LogLevelEnum.INFO, msg);
+   public info(...msg: any[]): void {
+      this.log(LogLevelEnum.INFO, ...msg);
    }
 
-   public warn(msg: string): void {
-      this.log(LogLevelEnum.WARN, msg);
+   public warn(...msg: any[]): void {
+      this.log(LogLevelEnum.WARN, ...msg);
    }
 
-   public error(msg: string): void {
-      this.log(LogLevelEnum.ERROR, msg);
+   public error(...msg: any[]): void {
+      this.log(LogLevelEnum.ERROR, ...msg);
    }
 
 
 
-   protected log(level: LogLevelEnum, msg: string): void
+   protected log(level: LogLevelEnum, ...msg: any[]): void
    {
       let logLevelStr: string = LogLevelEnum[level].toUpperCase();
       let logFunction: string = logLevelStr.toLowerCase();
@@ -47,7 +47,7 @@ export class LoggerService
 
       // Log dans la console
       if (level >= this.clientLogLevel) {
-         console[logFunction](logLevelStr, msg);
+         console[logFunction](logLevelStr, ...msg);
       }
 
 
@@ -55,7 +55,7 @@ export class LoggerService
       if (level >= this.serverLogLevel && this.loggingServiceUrl) {
          fetch(`${this.loggingServiceUrl}/${logLevelStr}`, {
             method: 'POST',
-            body: msg
+            body: JSON.stringify(msg)
          });
       }
    }
