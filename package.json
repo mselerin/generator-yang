@@ -20,7 +20,6 @@
     "yeoman-generator",
     "generator",
     "angular",
-    "angular 2",
     "webpack"
   ],
   "dependencies": {
