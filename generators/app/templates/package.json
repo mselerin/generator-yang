@@ -41,6 +41,7 @@
       "webpack-merge": "4.1.0"
    },
    "dependencies": {
+      "@angular/animations": "4.0.0",
       "@angular/common": "4.0.0",
       "@angular/compiler": "4.0.0",
       "@angular/core": "4.0.0",

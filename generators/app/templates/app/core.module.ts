@@ -20,6 +20,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {HttpModule, Http} from '@angular/http';
 import {RouterModule} from "@angular/router";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 
 // Constants
@@ -67,6 +68,7 @@ export function HttpLoaderFactory(http: Http) {
       FormsModule,
       HttpModule,
       RouterModule,
+      BrowserAnimationsModule,
       TranslateModule.forRoot({
          loader: {
             provide: TranslateLoader,
