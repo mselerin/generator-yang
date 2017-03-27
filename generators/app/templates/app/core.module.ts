@@ -32,6 +32,13 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {AppInitializer} from 'app/app.initializer';
 /* yang-add-service-import - Yang will add services imports here */
 
+
+// App init
+export function appInitFactory(appInit: AppInitializer) {
+   return () => appInit.init();
+}
+
+
 // Translation
 export function HttpLoaderFactory(http: Http) {
    return new TranslateHttpLoader(http, 'app/resources/i18n/', '.json');
@@ -51,7 +58,7 @@ export function HttpLoaderFactory(http: Http) {
          provide: APP_INITIALIZER,
          multi: true,
          // Doit retourner une fonction qui renvoie une Promise
-         useFactory: (appInit: AppInitializer) => () => appInit.init(),
+         useFactory: appInitFactory,
          deps: [AppInitializer]
       }
    ],
