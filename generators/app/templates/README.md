@@ -1,1 +1,1 @@
-# Starter Kit for Angular 2 & Webpack
+# Starter Kit for Angular & Webpack
