@@ -28,7 +28,7 @@ module.exports = class extends YangGenerator
          this.props['dir'] = (this.options.shared ? 'app/shared/components' : '');
 
       if (!this.props['dir'])
-         this.props['dir'] = (this.options.feature !== '' ? 'app/features/' + this.options.feature + '/' + this.props['name'] : '');
+         this.props['dir'] = (this.options.feature !== '' ? `app/features/${this.options.feature}/${this.props['name']}` : '');
 
       this.props['styles'] = this.options.styles || false;
       this.props['shared'] = this.options.styles || false;
@@ -70,6 +70,22 @@ module.exports = class extends YangGenerator
 
          this.insertBeforeNeedle(
             'app/shared/shared.module.ts',
+            'yang-add-component-declaration',
+            `${this.props.titleName}Component,`
+         );
+      }
+
+      else if (this.props.feature !== '') {
+         let file = `app/features/${this.options.feature}/${this.options.feature}.module.ts`;
+
+         this.insertBeforeNeedle(
+            file,
+            'yang-add-component-import',
+            `import {${this.props.titleName}Component} from "./${this.props.kebabName}/${this.props.kebabName}.component";`
+         );
+
+         this.insertBeforeNeedle(
+            file,
             'yang-add-component-declaration',
             `${this.props.titleName}Component,`
          );
