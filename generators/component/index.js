@@ -13,6 +13,7 @@ module.exports = class extends YangGenerator
    constructor(args, opts) {
       super(args, opts);
 
+      this.option('feature', { type: String, required: false});
       this.option('styles', { type: Boolean, required: false });
       this.option('shared', { type: Boolean, required: false });
    }
@@ -20,7 +21,15 @@ module.exports = class extends YangGenerator
 
    initializing() {
       super.initializing();
-      this.props['dir'] = this.options.dir || (this.options.shared ? 'app/shared/components' : '');
+      this.props['feature'] = this.options.feature || '';
+      this.props['dir'] = this.options.dir;
+
+      if (!this.props['dir'])
+         this.props['dir'] = (this.options.shared ? 'app/shared/components' : '');
+
+      if (!this.props['dir'])
+         this.props['dir'] = (this.options.feature !== '' ? 'app/features/' + this.options.feature + '/' + this.props['name'] : '');
+
       this.props['styles'] = this.options.styles || false;
       this.props['shared'] = this.options.styles || false;
    }
