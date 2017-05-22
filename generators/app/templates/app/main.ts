@@ -1,9 +1,11 @@
 import {CONFIG} from './config';
 
 import './polyfills';
+/* yang-add-main-library */
 
 // App Styles
 import 'app/resources/styles/app.scss';
+/* yang-add-main-styles */
 
 // Bootstrap Angular
 import {enableProdMode} from "@angular/core";
