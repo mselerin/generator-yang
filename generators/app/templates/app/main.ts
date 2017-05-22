@@ -3,9 +3,14 @@ import {CONFIG} from './config';
 import './polyfills';
 /* yang-add-main-library */
 
+
+/* yang-add-main-styles */
+
+
 // App Styles
 import 'app/resources/styles/app.scss';
-/* yang-add-main-styles */
+/* yang-add-app-styles */
+
 
 // Bootstrap Angular
 import {enableProdMode} from "@angular/core";
