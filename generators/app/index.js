@@ -26,6 +26,10 @@ module.exports = class extends YangGenerator
 
 
    prompting () {
+      if (this.options['skip-prompt'] === true) {
+         return;
+      }
+
       // Have Yeoman greet the user.
       this.log(yosay(
          'Welcome to the transcendent '
@@ -33,10 +37,6 @@ module.exports = class extends YangGenerator
          + ' ' + chalk.green(this.getVersion())
          + ' generator!'
       ));
-
-      if (this.options['skip-prompt'] === true) {
-         return;
-      }
 
       let prompts = [
          {
