@@ -42,6 +42,12 @@ Generates a stub component under the current directory.
 * styles : Add a `name.component.scss`
 
 
+***
+### Plugin
+    yo yang:plugin plugin-name
+Execute a sub-generator for Yang.
+For example, `yo yang:plugin sample` run then plugin named 'yang-sample' (which should be installed globally). 
+
 
 ## Getting To Know Yeoman
 
