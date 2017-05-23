@@ -2,10 +2,6 @@
 
 const YangGenerator = require('../yang-generator.js');
 const path = require('path');
-const chalk = require('chalk');
-const yosay = require('yosay');
-const rename = require("gulp-rename");
-const _ = require("lodash");
 
 
 module.exports = class extends YangGenerator
@@ -21,14 +17,18 @@ module.exports = class extends YangGenerator
 
    initializing() {
       super.initializing();
-      this.props['feature'] = this.options.feature || '';
+      this.props['shared'] = this.options.shared;
+      this.props['feature'] = this.options.feature;
       this.props['dir'] = this.options.dir;
 
       if (!this.props['dir'])
-         this.props['dir'] = (this.options.shared ? 'app/shared/components' : '');
+         this.props['dir'] = (this.options.shared ? `${this.getProjectRoot()}app/shared/components` : null);
 
       if (!this.props['dir'])
-         this.props['dir'] = (this.options.feature !== '' ? `app/features/${this.options.feature}/${this.props['name']}` : '');
+         this.props['dir'] = (this.props['feature'] ? `${this.getProjectRoot()}app/features/${this.props['feature']}/${this.props['name']}` : null);
+
+      if (!this.props['dir'])
+         this.props['dir'] = '';
 
       this.props['styles'] = this.options.styles || false;
       this.props['shared'] = this.options.styles || false;
@@ -61,22 +61,22 @@ module.exports = class extends YangGenerator
 
 
       // Update files
-      if (this.props.dir === 'app/shared/components') {
+      if (this.props.shared) {
          this.insertBeforeNeedle(
-            'app/shared/shared.module.ts',
+            `${this.getProjectRoot()}app/shared/shared.module.ts`,
             'yang-add-component-import',
             `import {${this.props.titleName}Component} from "./components/${this.props.kebabName}.component";`
          );
 
          this.insertBeforeNeedle(
-            'app/shared/shared.module.ts',
+            `${this.getProjectRoot()}app/shared/shared.module.ts`,
             'yang-add-component-declaration',
             `${this.props.titleName}Component,`
          );
       }
 
-      else if (this.props.feature !== '') {
-         let file = `app/features/${this.options.feature}/${this.options.feature}.module.ts`;
+      else if (this.props.feature) {
+         let file = `${this.getProjectRoot()}app/features/${this.options.feature}/${this.options.feature}.module.ts`;
 
          this.insertBeforeNeedle(
             file,

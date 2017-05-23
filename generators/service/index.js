@@ -1,11 +1,6 @@
 'use strict';
 
 const YangGenerator = require('../yang-generator.js');
-const path = require('path');
-const chalk = require('chalk');
-const yosay = require('yosay');
-const rename = require("gulp-rename");
-const _ = require("lodash");
 
 
 module.exports = class extends YangGenerator
@@ -17,7 +12,7 @@ module.exports = class extends YangGenerator
 
    initializing() {
       super.initializing();
-      this.props['dir'] = this.options.dir || 'app/services';
+      this.props['dir'] = this.options.dir || `${this.getProjectRoot()}app/services`;
    }
 
    writing () {
@@ -28,13 +23,13 @@ module.exports = class extends YangGenerator
 
       // Update files
       this.insertBeforeNeedle(
-         'app/core.module.ts',
+         `${this.getProjectRoot()}app/core.module.ts`,
          'yang-add-service-import',
          `import {${this.props.titleName}Service} from "app/services/${this.props.kebabName}.service";`
       );
 
       this.insertBeforeNeedle(
-         'app/core.module.ts',
+         `${this.getProjectRoot()}app/core.module.ts`,
          'yang-add-service-provider',
          `${this.props.titleName}Service,`
       );

@@ -1,11 +1,6 @@
 'use strict';
 
 const YangGenerator = require('../yang-generator.js');
-const path = require('path');
-const chalk = require('chalk');
-const yosay = require('yosay');
-const rename = require("gulp-rename");
-const _ = require("lodash");
 
 
 module.exports = class extends YangGenerator
@@ -20,7 +15,8 @@ module.exports = class extends YangGenerator
 
    initializing() {
       super.initializing();
-      this.props['dir'] = this.options.dir || 'app/shared/pipes';
+      this.props['shared'] = (!this.options.dir);
+      this.props['dir'] = this.options.dir || `${this.getProjectRoot()}app/shared/directives`;
    }
 
 
@@ -32,15 +28,15 @@ module.exports = class extends YangGenerator
 
 
       // Update files
-      if (this.props.dir === 'app/shared/directives') {
+      if (this.props.shared) {
          this.insertBeforeNeedle(
-            'app/shared/shared.module.ts',
+            `${this.getProjectRoot()}app/shared/shared.module.ts`,
             'yang-add-directive-import',
             `import {${this.props.titleName}Directive} from "./directives/${this.props.kebabName}.directive";`
          );
 
          this.insertBeforeNeedle(
-            'app/shared/shared.module.ts',
+            `${this.getProjectRoot()}app/shared/shared.module.ts`,
             'yang-add-directive-declaration',
             `${this.props.titleName}Directive,`
          );

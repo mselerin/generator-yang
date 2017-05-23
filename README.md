@@ -38,6 +38,12 @@ Generates a complete feature under app/features.
     yo yang:component my-nice-component
 Generates a stub component under the current directory.
 
+    yo yang:component my-shared-component --shared
+Generates a stub component under `app/shared/components`.
+
+    yo yang:component my-feature-component --feature my-super-feature
+Generates a stub component under `app/features/my-super-feature/my-feature-component`.
+
 ##### Options
 * styles : Add a `name.component.scss`
 

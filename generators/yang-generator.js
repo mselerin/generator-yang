@@ -37,6 +37,20 @@ module.exports = class extends Generator
    }
 
 
+   getProjectRoot() {
+      let root = '';
+      let ndx = 0;
+
+      while (!this.fs.exists(this.destinationPath(`${root}package.json`)) && (++ndx) < 20)
+         root = '../' + root;
+
+      if (ndx === 20)
+         root = '';
+
+      return root;
+   }
+
+
    initializing() {
       this.props['dir'] = this.options.dir || '';
       this.props['name'] = this.options.name;
