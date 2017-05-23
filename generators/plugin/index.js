@@ -1,6 +1,7 @@
 'use strict';
 
 const Generator = require('yeoman-generator');
+const path = require("path");
 const _ = require("lodash");
 
 
@@ -16,6 +17,11 @@ module.exports = class extends Generator
          arguments: this.arguments
       }, this.options);
 
-      this.composeWith(this.options['plugin'], opt);
+      let plugin = this.options['plugin'];
+
+      if (!plugin.includes('/') && !plugin.includes('\\'))
+         plugin = `yang-${plugin}`;
+
+      this.composeWith(plugin, opt);
    }
 };
