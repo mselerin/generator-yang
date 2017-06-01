@@ -16,7 +16,7 @@
    },
    "devDependencies": {
       "@types/lodash": "4.14.64",
-      "@types/node": "7.0.22",
+      "@types/node": "7.0.23",
       "angular2-template-loader": "0.6.2",
       "clean-webpack-plugin": "0.1.16",
       "copy-webpack-plugin": "4.0.1",
@@ -33,7 +33,7 @@
       "style-loader": "0.18.1",
       "to-string-loader": "1.1.5",
       "ts-loader": "2.1.0",
-      "typescript": "2.3.3",
+      "typescript": "2.3.4",
       "webpack": "2.6.1",
       "webpack-chunk-hash": "0.4.0",
       "webpack-dev-server": "2.4.5",
@@ -54,7 +54,6 @@
       "core-js": "2.4.1",
       "lodash": "4.17.4",
       "moment": "2.18.1",
-      "reflect-metadata": "0.1.10",
       "rxjs": "5.4.0",
       "whatwg-fetch": "2.0.3",
       "zone.js": "0.8.11"
