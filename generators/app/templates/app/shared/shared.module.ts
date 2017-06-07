@@ -42,6 +42,6 @@ const DECLARATIONS = [
 @NgModule({
    imports: MODULES,
    declarations: DECLARATIONS,
-   exports: [].concat(MODULES, DECLARATIONS)
+   exports: [...MODULES, ...DECLARATIONS]
 })
 export class SharedModule { }

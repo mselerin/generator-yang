@@ -8,6 +8,6 @@ import {TranslateService} from "@ngx-translate/core";
 export class HeaderComponent
 {
     constructor(
-        private translate: TranslateService
+        public translate: TranslateService
     ) {}
 }

@@ -13,6 +13,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+const { AotPlugin } = require('@ngtools/webpack');
+
 
 const PATHS = { };
 PATHS.root         = path.join(__dirname, './');
@@ -75,7 +77,7 @@ let config = {
       rules: [
          {
             test: /\.ts$/,
-            loaders: ['ts-loader', 'angular2-template-loader'],
+            loaders: ['@ngtools/webpack'],
             exclude: [/\.(spec|e2e)\.ts$/]
          },
 
@@ -113,6 +115,13 @@ let config = {
 
       new webpack.DefinePlugin({
          PROFILE_CONFIG: JSON.stringify(profileConfig)
+      }),
+
+      // Plugin AOT pour Angular
+      new AotPlugin({
+         tsConfigPath: './tsconfig.json',
+         mainPath: "app/main.ts",
+         skipCodeGeneration: (!profileConfig.production) // AOT really happens here (false = enabled)
       }),
 
       // Permet de séparer le code applicatif des librairies externes
@@ -162,8 +171,6 @@ let config = {
          inject: true,
          minify: false
       })
-
-
    ],
 
    stats: {
