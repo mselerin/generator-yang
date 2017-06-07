@@ -14,6 +14,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const { AotPlugin } = require('@ngtools/webpack');
+const ENABLE_AOT = profileConfig.production;
 
 
 const PATHS = { };
@@ -121,7 +122,7 @@ let config = {
       new AotPlugin({
          tsConfigPath: './tsconfig.json',
          mainPath: "app/main.ts",
-         skipCodeGeneration: (!profileConfig.production) // AOT really happens here (false = enabled)
+         skipCodeGeneration: !ENABLE_AOT // AOT really happens here (false = enabled)
       }),
 
       // Permet de séparer le code applicatif des librairies externes
