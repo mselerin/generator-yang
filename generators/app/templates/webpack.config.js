@@ -6,6 +6,7 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 
+const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const ChunkHashPlugin = require('webpack-chunk-hash');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -209,6 +210,7 @@ if ('dev' === PROFILE) {
 else {
    config = merge(config, {
       plugins: [
+         new ProgressPlugin(),
          new webpack.optimize.UglifyJsPlugin({
             comments: false,
             beautify: false,
