@@ -7,7 +7,10 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
+const NoEmitOnErrorsPlugin = require('webpack/lib/NoEmitOnErrorsPlugin');
+const DefinePlugin = require('webpack/lib/DefinePlugin');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
+const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const ChunkHashPlugin = require('webpack-chunk-hash');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -15,7 +18,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const { AotPlugin } = require('@ngtools/webpack');
-const ENABLE_AOT = profileConfig.production;
+const ENABLE_AOT = false; //profileConfig.production;
 
 
 const PATHS = { };
@@ -112,10 +115,10 @@ let config = {
    },
 
    plugins: [
-      new webpack.NoEmitOnErrorsPlugin(),
+      new NoEmitOnErrorsPlugin(),
       new ChunkHashPlugin(),
 
-      new webpack.DefinePlugin({
+      new DefinePlugin({
          PROFILE_CONFIG: JSON.stringify(profileConfig)
       }),
 
@@ -140,9 +143,15 @@ let config = {
          minChunks: (module) => isInPath(module, path.join(PATHS.node_modules, '@angular'))
       }),
 
-      // Faire un fichier pour les polyfills et un dernier pour la partie "webpack" (manifest)
+      // Faire un fichier pour les polyfills
       new CommonsChunkPlugin({
-         names: ['polyfills', 'manifest']
+         name: 'polyfills'
+      }),
+
+      // Faire un fichier pour la partie "webpack" (manifest)
+      new CommonsChunkPlugin({
+         name: 'manifest',
+         minChunks: Infinity
       }),
 
       extractCSS,
@@ -194,6 +203,7 @@ let config = {
 };
 
 
+
 if ('dev' === PROFILE) {
    config = merge(config, {
       devtool: 'cheap-module-eval-source-map',
@@ -211,7 +221,9 @@ else {
    config = merge(config, {
       plugins: [
          new ProgressPlugin(),
-         new webpack.optimize.UglifyJsPlugin({
+         new CleanWebpackPlugin([PATHS.dist], { root: PATHS.root }),
+
+         new UglifyJsPlugin({
             comments: false,
             beautify: false,
             sourceMap: false,
@@ -223,9 +235,7 @@ else {
                screw_ie8: true,
                warnings: false
             }
-         }),
-
-         new CleanWebpackPlugin([PATHS.dist])
+         })
       ]
    });
 }
