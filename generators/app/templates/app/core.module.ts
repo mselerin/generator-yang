@@ -18,8 +18,10 @@ import {Session} from 'app/app.session';
 import {ConfigService} from "app/services/config.service";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {AppInitializer} from 'app/app.initializer';
-/* yang-add-service-import - Yang will add services imports here */
+/* yang-add-service-import - Yang will add services import here */
 
+// Others modules
+/* yang-add-core-module-import - Yang will add core module import here */
 
 // App init
 export function appInitFactory(appInit: AppInitializer) {
@@ -56,6 +58,7 @@ export function HttpLoaderFactory(http: Http) {
       HttpModule,
       RouterModule,
       BrowserAnimationsModule,
+      /* yang-add-core-module - Yang will add core module imports here */
       TranslateModule.forRoot({
          loader: {
             provide: TranslateLoader,
