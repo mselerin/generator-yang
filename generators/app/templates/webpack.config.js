@@ -18,7 +18,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const { AotPlugin } = require('@ngtools/webpack');
-const ENABLE_AOT = false; //profileConfig.production;
+const ENABLE_AOT = profileConfig.production;
 
 
 const PATHS = { };

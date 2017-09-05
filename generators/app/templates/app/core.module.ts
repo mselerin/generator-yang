@@ -4,10 +4,7 @@ import 'rxjs';
 // Angular Modules
 import {NgModule, SkipSelf, Optional, APP_INITIALIZER} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {HttpModule, Http} from '@angular/http';
-import {RouterModule} from "@angular/router";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 
 // Constants
@@ -30,7 +27,7 @@ export function appInitFactory(appInit: AppInitializer) {
 
 
 // Translation
-export function HttpLoaderFactory(http: Http) {
+export function HttpLoaderFactory(http: HttpClient) {
    return new TranslateHttpLoader(http, 'app/resources/i18n/', '.json');
 }
 
@@ -54,16 +51,13 @@ export function HttpLoaderFactory(http: Http) {
    ],
    imports: [
       CommonModule,
-      FormsModule,
-      HttpModule,
-      RouterModule,
-      BrowserAnimationsModule,
+      HttpClientModule,
       /* yang-add-core-module - Yang will add core module imports here */
       TranslateModule.forRoot({
          loader: {
             provide: TranslateLoader,
             useFactory: HttpLoaderFactory,
-            deps: [Http]
+            deps: [HttpClient]
          }
       })
    ]

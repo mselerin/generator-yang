@@ -1,10 +1,11 @@
 // Angular Modules
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 // Pipes
 import {PropercasePipe} from './pipes/propercase.pipe';
@@ -22,9 +23,10 @@ import {SampleDirective} from './directives/sample.directive';
 const MODULES: any[] = [
    CommonModule,
    FormsModule,
-   HttpModule,
+   HttpClientModule,
    RouterModule,
-   TranslateModule
+   BrowserAnimationsModule,
+   TranslateModule,
 ];
 
 const DECLARATIONS = [

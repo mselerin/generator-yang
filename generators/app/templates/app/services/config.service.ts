@@ -1,14 +1,14 @@
 import * as _ from 'lodash';
 
 import {Injectable} from "@angular/core";
+import {HttpClient} from "@angular/common/http";
 import {AppConfig} from "app/models/app-config.model";
-import {Http} from "@angular/http";
 
 @Injectable()
 export class ConfigService
 {
    constructor(
-      private http:Http,
+      private http:HttpClient,
       public appConfig:AppConfig
    ) { }
 
@@ -16,7 +16,6 @@ export class ConfigService
       let url = 'app/resources/config/app-config.json';
 
       return this.http.get(url)
-         .map(res => res.json())
          .map(data => _.merge(this.appConfig, new AppConfig(), data))
          .toPromise();
    }
