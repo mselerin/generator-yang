@@ -1,6 +1,5 @@
 import {CONFIG} from './config';
 
-import './polyfills';
 /* yang-add-main-library */
 
 
@@ -12,10 +11,18 @@ import 'app/resources/styles/app.scss';
 /* yang-add-app-styles */
 
 
+// Main App module
+import {AppModule} from './app.module';
+
+
+// Polyfills
+import './polyfills';
+import 'zone.js/dist/zone.js';
+
+
 // Bootstrap Angular
 import {enableProdMode} from "@angular/core";
 import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
-import {AppModule} from './app.module';
 
 if (CONFIG.production)
     enableProdMode();
