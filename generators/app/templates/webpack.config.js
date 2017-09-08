@@ -3,12 +3,11 @@ const PROFILE = process.env.PROFILE || 'dev';
 const profileConfig = require('./webpack-profiles.config')[PROFILE];
 
 const path = require('path');
-const webpack = require('webpack');
 const merge = require('webpack-merge');
 
-const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const NoEmitOnErrorsPlugin = require('webpack/lib/NoEmitOnErrorsPlugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
+const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const ChunkHashPlugin = require('webpack-chunk-hash');
@@ -18,7 +17,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const { AotPlugin } = require('@ngtools/webpack');
-const ENABLE_AOT = profileConfig.production;
+const ENABLE_AOT = true; //profileConfig.production;
 
 
 const PATHS = { };
@@ -131,27 +130,22 @@ let config = {
 
       // Permet de séparer le code applicatif des librairies externes
       new CommonsChunkPlugin({
-         name: 'vendor-modules',
+         name: 'vendor',
          chunks: ['main'],
          minChunks: (module) => isInPath(module, PATHS.node_modules, ['@angular'])
       }),
 
       // Sortir Angular hors du vendor-modules
       new CommonsChunkPlugin({
-         name: 'vendor-angular',
-         chunks: ['vendor-modules', 'main'],
+         name: 'angular',
+         chunks: ['vendor', 'main'],
          minChunks: (module) => isInPath(module, path.join(PATHS.node_modules, '@angular'))
-      }),
-
-      // Faire un fichier pour les polyfills
-      new CommonsChunkPlugin({
-         name: 'polyfills'
       }),
 
       // Faire un fichier pour la partie "webpack" (manifest)
       new CommonsChunkPlugin({
          name: 'manifest',
-         minChunks: Infinity
+         minChunks: null
       }),
 
       extractCSS,
@@ -182,6 +176,8 @@ let config = {
          inject: true,
          minify: false
       })
+
+
    ],
 
    stats: {
@@ -201,7 +197,6 @@ let config = {
    }
 
 };
-
 
 
 if ('dev' === PROFILE) {
