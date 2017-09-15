@@ -17,7 +17,6 @@ export class AppInitializer
 
         return this.configService.loadConfig()
             .then((config: AppConfig) => {
-
                 // Logging
                 LOGGER.clientLogLevel = LogLevelEnum.DEBUG;
                 LOGGER.serverLogLevel = LogLevelEnum.ERROR;
@@ -36,9 +35,10 @@ export class AppInitializer
                     browserLang = 'fr';
 
                 LOGGER.debug(`Using language : ${browserLang}`);
-                this.translate.use(browserLang);
-
-                LOGGER.info('Application initialized');
-            });
+                return this.translate.use(browserLang).toPromise();
+            })
+           .then(() => {
+              LOGGER.info('Application initialized');
+           });
     }
 }
