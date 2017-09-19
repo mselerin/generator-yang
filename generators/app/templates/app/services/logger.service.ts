@@ -53,13 +53,22 @@ export class LoggerService
 
       // Log vers le serveur
       if (level >= this.serverLogLevel && this.loggingServiceUrl) {
-         fetch(`${this.loggingServiceUrl}/${logLevelStr}`, {
-            method: 'POST',
-            body: JSON.stringify(msg)
-         });
+         try {
+            fetch(`${this.loggingServiceUrl}/${logLevelStr}`, {
+               method: 'POST',
+               body: this.toJSON(msg)
+            });
+         }
+         catch (err) {
+            console.error("Cannot send error to server", err);
+         }
       }
    }
 
+
+   protected toJSON(...msg: any[]): string {
+      return JSON.stringify(msg.map(m => m.toString()));
+   }
 }
 
 export const LOGGER = new LoggerService();
