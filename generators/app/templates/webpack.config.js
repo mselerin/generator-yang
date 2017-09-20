@@ -1,5 +1,17 @@
-const APP_VERSION = process.env.npm_package_version;
-const PROFILE = process.env.PROFILE || 'dev';
+const APP_VERSION = process.env['npm_package_version'];
+
+const getProfile = () => {
+    let profile = process.env['PROFILE'] || 'dev';
+    let script = process.env['npm_lifecycle_event'];
+
+    if (script.startsWith('build:')) {
+        profile = script.substring(6);
+    }
+
+    return profile;
+};
+
+const PROFILE = getProfile();
 const profileConfig = require('./webpack-profiles.config')[PROFILE];
 
 const path = require('path');
@@ -17,7 +29,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const { AotPlugin } = require('@ngtools/webpack');
-const ENABLE_AOT = true; //profileConfig.production;
+const ENABLE_AOT = false; //profileConfig.production;
 
 
 const PATHS = { };

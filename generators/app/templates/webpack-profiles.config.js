@@ -15,12 +15,10 @@ module.exports = {
    }),
 
    test: Object.assign({}, defaultConfig, {
-      production: true,
       apiUrl: '/api/'
    }),
 
    prod: Object.assign({}, defaultConfig, {
-      production: true,
       apiUrl: '/api/'
    }),
 };
