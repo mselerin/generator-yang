@@ -1,4 +1,4 @@
-const APP_VERSION = require("./package.json").version;
+const APP_VERSION = process.env.npm_package_version;
 const PROFILE = process.env.PROFILE || 'dev';
 const profileConfig = require('./webpack-profiles.config')[PROFILE];
 
