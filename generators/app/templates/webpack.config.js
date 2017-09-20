@@ -1,14 +1,14 @@
 const APP_VERSION = process.env['npm_package_version'];
 
 const getProfile = () => {
-    let profile = process.env['PROFILE'] || 'dev';
-    let script = process.env['npm_lifecycle_event'];
+   let profile = process.env['PROFILE'] || 'dev';
+   let script = process.env['npm_lifecycle_event'];
 
-    if (script.startsWith('build:')) {
-        profile = script.substring(6);
-    }
+   if (script.startsWith('build:')) {
+      profile = script.substring(6);
+   }
 
-    return profile;
+   return profile;
 };
 
 const PROFILE = getProfile();
@@ -18,15 +18,15 @@ const path = require('path');
 const merge = require('webpack-merge');
 
 const NoEmitOnErrorsPlugin = require('webpack/lib/NoEmitOnErrorsPlugin');
+const HashedModuleIdsPlugin = require('webpack/lib/HashedModuleIdsPlugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
-const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
-const ChunkHashPlugin = require('webpack-chunk-hash');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 
 const { AotPlugin } = require('@ngtools/webpack');
 const ENABLE_AOT = false; //profileConfig.production;
@@ -127,7 +127,7 @@ let config = {
 
    plugins: [
       new NoEmitOnErrorsPlugin(),
-      new ChunkHashPlugin(),
+      new HashedModuleIdsPlugin(),
 
       new DefinePlugin({
          PROFILE_CONFIG: JSON.stringify(profileConfig)
@@ -188,8 +188,6 @@ let config = {
          inject: true,
          minify: false
       })
-
-
    ],
 
    stats: {
@@ -231,15 +229,10 @@ else {
          new CleanWebpackPlugin([PATHS.dist], { root: PATHS.root }),
 
          new UglifyJsPlugin({
-            comments: false,
-            beautify: false,
-            sourceMap: false,
             mangle: {
-               screw_ie8: true,
                keep_fnames: true
             },
             compress: {
-               screw_ie8: true,
                warnings: false
             }
          })
