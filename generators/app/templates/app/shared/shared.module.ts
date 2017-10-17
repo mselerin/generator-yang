@@ -27,6 +27,7 @@ const MODULES: any[] = [
    RouterModule,
    BrowserAnimationsModule,
    TranslateModule,
+   /* yang-add-module-declaration - Yang will add modules declarations here */
 ];
 
 const DECLARATIONS = [
