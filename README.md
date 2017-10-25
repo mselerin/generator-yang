@@ -1,3 +1,7 @@
+**DEPRECATED - Please use [Yang-Cli](https://github.com/mselerin/yang-cli) instead.**
+---
+
+
 # generator-yang
 > An Angular generator with Webpack
 
